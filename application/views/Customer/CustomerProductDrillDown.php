@@ -22,7 +22,7 @@
 
 <h2><b><u>Price: </b></u><?php echo '&euro;'.$row->buyPrice ?></h2>
 <!--<p><button onclick="">Add to Cart</button></p>-->
-<button><a class="cartbutton" href="<?php echo $base.'/CustomerController/addtoCart/'.$row->productCode;?>" >Add To Cart </a></button>
+<button><a  href="<?php echo $base.'/CustomerController/addtoCart/'.$row->productCode;?>" >Add To Cart </a></button>
     <?php } ?>
 </div>
 

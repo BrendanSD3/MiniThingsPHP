@@ -62,12 +62,19 @@ public function CustomerProductdrilldown($productCode)
 			}
 			$quantity=$quantity-1;
 			$this->db->set('quantity',$quantity);
-			  $this->db->where('productCode',$productCode);
+              $this->db->where('productCode',$productCode);
+              $this->db->where('customerName',$customerName);
 			  $this->db->update('cart');
 		}
 		if($quantity<=0)
 		{
-			
+			$sql="DELETE FROM cart WHERE productCode=? AND customerName=?";
+        $test=$this->db->query($sql,array($productCode,$customerName));
+        if ($this->db->affected_rows() == 1) {
+            return true;
+        } else {
+            return false;
+        }
 		}
 	}
    public function getdata($productCode,$item)
@@ -132,7 +139,7 @@ public function CustomerProductdrilldown($productCode)
     {
 	//print_r($data);
 	$customerName=$data['customerName'];
-	print($customerName);
+	
 // 	$this->db->select("productName,"."buyPrice,"."productCode");
   //      $this->db->from('products');
     //    $this->db->where('customerName',$customerName);

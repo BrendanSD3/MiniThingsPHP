@@ -50,6 +50,11 @@ li a{
   padding: 14px 16px;
   text-decoration: none;
 }
+#errors{
+  color:red;
+  font-weight:bold;
+
+}
   </style>
 </head>
 <body>

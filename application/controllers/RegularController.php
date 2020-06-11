@@ -28,16 +28,6 @@ class RegularController extends CI_Controller {
     {	$data['view_data']= $this->RegularModel->Productdrilldown($productCode);
 		$this->load->view('DrillDownView', $data);
     }
-//    	function index() {
-//		//check if the user is already logged in
-//		if($this->session->userdata('logged_in'))
-//			//the user is already logged in -> display the index page with secret content
-//			redirect('RegularController/home');
-//		else
-//			//user isn't logged in -> display login form
-//			$this->load->view('LoginAdmin');
-//	}
-
 	
 ///////////////////////////////////////CUSTOMER///////////////////////////////////////////////
        public function LoginCust() {
@@ -101,7 +91,7 @@ class RegularController extends CI_Controller {
             return true;
         } else {
             //return false ->we have an invalid user
-            $this->form_validation->set_message('check_databasecust', 'Invalid email or password');
+            $this->form_validation->set_message('check_databasecust', '<p id="errors">Invalid email or password</p>');
             return false;
         }
     }
@@ -228,7 +218,7 @@ class RegularController extends CI_Controller {
 
         if ($this->form_validation->run() == false) {
             //validation failed -> display login form
-           echo $this->db->last_query(); 
+        //   echo $this->db->last_query(); 
             $this->load->view('LoginAdmin');
         } else {
             //validation passed (inc a call to check_database() via a callback) -> display secret content
@@ -259,7 +249,7 @@ class RegularController extends CI_Controller {
             return true;
         } else {
             //return false ->we have an invalid user
-            $this->form_validation->set_message('check_database', 'Invalid username or password');
+            $this->form_validation->set_message('check_database', '<p id="errors">Invalid username or password</p>');
             return false;
         }
     }

@@ -11,8 +11,9 @@
      <div class='logincontent'>
                    <?php 
 		echo form_open('RegularController/verify_login'); 
-		?>
-                   
+                
+                ?>
+                   <p  style="color: red;"><?php echo validation_errors(); ?></p>
                <label for='username'>User Name:</label><br>
 		<?php 
                 echo form_input('username');
@@ -23,7 +24,7 @@
                 echo form_password('password');
 		
 		echo "<br><br>";
-                echo validation_errors();
+               
   
 		?>
 		 <button  class="btn" name="Login_btn" <?php echo form_submit("Login");?> Login </button>

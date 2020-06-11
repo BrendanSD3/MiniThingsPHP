@@ -24,7 +24,7 @@ class CustomerController extends CI_Controller {
 			$session_data = $this->session->userdata('logged_in');
 			//get the username from the session and put it in $data
 			$data['customerName'] = $session_data['customerName'];
-                            //$data['order_data']=$this->AdminModel->getorderdata();
+            //$data['order_data']=$this->AdminModel->getorderdata();
 			$this->load->view('Customer/CustomerHome', $data);
 		}
 		else {
@@ -52,10 +52,21 @@ class CustomerController extends CI_Controller {
 	$data['item_data']=$this->CustomerModel->ViewcustomerCart($data);
        	$this->load->view('Customer/ShoppingCart',$data);
 		}
-   //.$row->productName.$row->buyPrice
-    }//,$productName,$buyPrice
+	}
     
-
+	public function RemoveFromCart($productCode)
+    {
+       $session_data =$this->session->userdata('logged_in');
+        $item['customerName']= $session_data['customerName'];
+        
+     
+        $this->CustomerModel->removefromcart($productCode,$item);
+        $data['item_data']=$this->CustomerModel->ViewcustomerCart($item);
+        $this->load->view('Customer/ShoppingCart',$data);
+        
+        
+        
+    }
 
 
 
@@ -64,11 +75,7 @@ class CustomerController extends CI_Controller {
        $session_data =$this->session->userdata('logged_in');
         $item['customerName']= $session_data['customerName'];
         
-       // $item['productCode']=$productCode;
-       // $item['quantity']=1;
-                    
-//       $item['productName']=$productName;
-//       $item['buyPrice']=$buyPrice;
+     
         $this->CustomerModel->getdata($productCode,$item);
         $data['item_data']=$this->CustomerModel->ViewcustomerCart($item);
         $this->load->view('Customer/ShoppingCart',$data);
@@ -76,54 +83,6 @@ class CustomerController extends CI_Controller {
         
         
     }
-//        public function editProduct($productCode)
-//        {
-//            $data['edit_data']= $this->AdminModel->editdata($productCode);
-//		$this->load->view('Admin/updateProductView',$data);
-//            //print_r($data);
-//            
-//        }
-//         public function updateProduct($productCode)
-//         {
-//       // $this->form_validation->set_rules('productName', 'productName', 'required');
-//		$this->form_validation->set_rules('productDescription', 'Description', 'required');
-//		$this->form_validation->set_rules('buyPrice', 'price ', 'required');	
-//		$this->form_validation->set_rules('productVendor', 'Vendor', 'required');
-////                    
-//             
-//             $productobj= array('productName'=>$this->input->post('productName'),
-//                 'productDescription'=>$this->input->post('productDescription'),
-//                 'buyPrice'=>$this->input->post('buyPrice'),
-//                 'productVendor'=>$this->input->post('productVendor')
-//                );
-//             if(!$this->form_validation->run())
-//             {
-//                 redirect('AdminController/editProduct/'.$productCode);
-//                 return;
-//             }
-//             else{
-//             $updatedRows= $this->AdminModel->updateProduct($productobj,$productCode);
-//             if ($updatedRows > 0)
-//		{	
-//                    
-//                    //$data['message'] = "$updatedRows Product has been updated";
-//                   
-//                    redirect('AdminController/AdminProductList');
-//                    }
-//             
-//             
-//                else
-//		{
-//                    
-//                    echo $this->db->last_query();
-//                    //$data['message'] = "There was an error updating ";
-//                    
-//                    //$this->load->view('DisplayMessageView',$data);
-//                }
-////                
-//                
-//             }
-//         }
-        
+     
         
 }
