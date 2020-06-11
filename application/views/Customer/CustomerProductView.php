@@ -50,7 +50,7 @@ function myFunction() {
                         <th>Price</th>
                         <th>Regular Price</th>
                         <th>Image </th>
-<!--                        <th colspan="5">Actions</th>-->
+                       <th colspan="5">Actions</th>
 		</tr>
 
 		<?php foreach($Product_info as $row){?>
@@ -65,7 +65,8 @@ function myFunction() {
                         
 			
                         <td> <a href="<?php echo $base.'/CustomerController/CustomerProductDrilldown/'.$row->productCode;?> "> <img src="<?php echo $img_base.'thumbs/'.$row->image  ;?>" /> </a> </td>    
-                </tr> 
+                        <td> <a class="btn btn-primary" href="<?php echo $base.'/CustomerController/addtoCart/'.$row->productCode;?>" >Add To Cart</a></td>
+                      </tr> 
 		<?php }?>  
    </table>
    <br><br>

@@ -17,6 +17,7 @@ class CustomerController extends CI_Controller {
 	public function index()
 	{	$this->load->view('Index');
 	}
+
         public function CustomerHome() {
 		//if the user is logged in
 		if($this->session->userdata('logged_in')) {
@@ -24,6 +25,7 @@ class CustomerController extends CI_Controller {
 			$session_data = $this->session->userdata('logged_in');
 			//get the username from the session and put it in $data
 			$data['customerName'] = $session_data['customerName'];
+			$data['count']=$this->CustomerModel->countcartitems($data);
             //$data['order_data']=$this->AdminModel->getorderdata();
 			$this->load->view('Customer/CustomerHome', $data);
 		}
@@ -83,6 +85,14 @@ class CustomerController extends CI_Controller {
         
         
     }
+	 public function countcart()
+	 {
+		$session_data =$this->session->userdata('logged_in');
+        $item['customerName']= $session_data['customerName'];
+        
      
+        $count=$this->CustomerModel->countcartitems($item);
+		print_r($count);
+	 }
         
 }

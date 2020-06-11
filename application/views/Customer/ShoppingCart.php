@@ -17,6 +17,7 @@
                     <!--<th style="text-align: center;"><strong>Action</strong></th>-->
                 </tr>	
 <?php $count=0;
+
     foreach ($item_data as $row) {
         ?>
 				<tr>

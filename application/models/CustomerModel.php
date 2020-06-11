@@ -153,6 +153,17 @@ public function CustomerProductdrilldown($productCode)
         
         return $query->result();
     }
+    public function countcartitems($item)
+    {$customerName=$item['customerName'];
+        $sql="SELECT COUNT(*) as count FROM `cart` Where `customerName` = ?";
+        $test=$this->db->query($sql,$customerName);
+        //print_r($test);
+        foreach ($test->result() as $row){
+        $count=$row-> count;
+        }
+       
+        return $count;
+    }
 }
     
     
